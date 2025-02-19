@@ -73,24 +73,24 @@ resource "aws_route_table" "pri_rt1" {
 
 resource "aws_route_table_association" "pub_rt1-1" {
     subnet_id = aws_subnet.pub-sn1.id
-    route_table_id = aws_route_table.pub_rt1
+    route_table_id = aws_route_table.pub_rt1.id
   
 }
 
 resource "aws_route_table_association" "pub_rt1-2" {
     subnet_id = aws_subnet.pub-sn2.id
-    route_table_id = aws_route_table.pub_rt1
+    route_table_id = aws_route_table.pub_rt1.id
   
 }
 
-resource "aws_route_table_association" "pub_rt1-1" {
+resource "aws_route_table_association" "pri_rt1-1" {
     subnet_id = aws_subnet.pri-sn1.id
-    route_table_id = aws_route_table.pub_rt1
+    route_table_id = aws_route_table.pub_rt1.id
   
 }
 
-resource "aws_route_table_association" "pub_rt1-1" {
+resource "aws_route_table_association" "pri_rt1-2" {
     subnet_id = aws_subnet.pri-sn2.id
-    route_table_id = aws_route_table.pub_rt1
+    route_table_id = aws_route_table.pub_rt1.id
   
 }
