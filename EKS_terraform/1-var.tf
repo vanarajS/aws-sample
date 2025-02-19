@@ -17,3 +17,13 @@ variable "tags" {
     }
   
 }
+
+variable "eks_version" {
+  default = "1.31"
+  
+}
+
+variable "cluster_name" {
+  default = "eks-first"
+  
+}
