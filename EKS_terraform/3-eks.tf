@@ -18,7 +18,7 @@ resource "aws_iam_role" "eks_role" {
     }
 
 resource "aws_iam_role_policy_attachment" "eks_cluster_policy" {
-    policy_arn = "arn:aws:iam:aws:policy/AmazonEKSClusterPolicy"
+    policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
     role = aws_iam_role.eks_role.name
   
 }
@@ -31,10 +31,10 @@ resource "aws_eks_cluster" "eks_cluster" {
       endpoint_private_access = true
       endpoint_public_access = true
       subnet_ids = [ 
-        aws_subnet.pri-sn1,
-        aws_subnet.pri-sn2,
-        aws_subnet.pub-sn1,
-        aws_subnet.pub-sn2
+        aws_subnet.pri-sn1.id,
+        aws_subnet.pri-sn2.id,
+        aws_subnet.pub-sn1.id,
+        aws_subnet.pub-sn2.id
       ]
     }
     access_config {
@@ -49,6 +49,6 @@ resource "aws_eks_cluster" "eks_cluster" {
     upgrade_policy {
       support_type = "STANDARD"
     }
-    depends_on = [ aws_iam_role_policy_attachment.eks_cluster_policy ]
+
 }
 
