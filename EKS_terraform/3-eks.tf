@@ -17,15 +17,15 @@
 
 #     }
 
-resource "aws_iam_role_policy_attachment" "eks_cluster_policy" {
-    policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
-    role = "EKS-role"
+# resource "aws_iam_role_policy_attachment" "eks_cluster_policy" {
+#     policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+#     role = "EKS-role"
   
-}
+# }
 
 resource "aws_eks_cluster" "eks_cluster" {
     name = var.cluster_name
-    role_arn = "arn:aws:iam::637423644535:role/EKS-role"
+    role_arn = "arn:aws:iam::637423644535:role/EKSCLuster"
     vpc_config {
       
       endpoint_private_access = true
