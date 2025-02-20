@@ -5,6 +5,7 @@
             "Effect": "Allow",
             "Principal": {
                 "Service": [
+                    "ec2.amazonaws.com",
                     "eks.amazonaws.com",
                     "eks-fargate-pods.amazonaws.com"
                 ]
