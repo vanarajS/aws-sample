@@ -1,3 +1,9 @@
+locals {
+  additional_tags = {
+    "kubernetes.io/cluster/${var.cluster_name}" = "owned"
+  }
+}
+
 resource "aws_vpc" "eks-vpc" {
     cidr_block = var.vpc_cidr
     tags = var.tags
@@ -23,14 +29,14 @@ resource "aws_subnet" "pri-sn1" {
     vpc_id = aws_vpc.eks-vpc.id
     cidr_block = cidrsubnet(var.vpc_cidr, 8, 110)
     availability_zone = "us-east-1a"
-  tags = var.tags
+  tags = merge(var.tags, local.additional_tags)
 }
 
 resource "aws_subnet" "pri-sn2" {
     vpc_id = aws_vpc.eks-vpc.id
     cidr_block = cidrsubnet(var.vpc_cidr, 8, 120)
     availability_zone = "us-east-1b"
-  tags = var.tags
+  tags = merge(var.tags, local.additional_tags)
 }
 
 resource "aws_internet_gateway" "igw" {

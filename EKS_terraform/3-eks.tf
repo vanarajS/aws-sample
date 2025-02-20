@@ -25,7 +25,7 @@
 
 resource "aws_eks_cluster" "eks_cluster" {
     name = var.cluster_name
-    role_arn = "arn:aws:iam::767398130689:role/eksClusterRole"
+    role_arn = "arn:aws:iam::590183971315:role/eksClusterRole"
     vpc_config {
       
       endpoint_private_access = true
@@ -52,3 +52,14 @@ resource "aws_eks_cluster" "eks_cluster" {
 
 }
 
+resource "aws_eks_fargate_profile" "eks-fargate_pro" {
+    cluster_name = aws_eks_cluster.eks_cluster.name
+    fargate_profile_name = "demo"
+    pod_execution_role_arn = "arn:aws:iam::590183971315:role/eksClusterRole"
+
+    selector {
+      namespace = "kube-system"
+    }
+    subnet_ids = [aws_subnet.pri-sn1.id, aws_subnet.pri-sn2.id]
+  
+}
