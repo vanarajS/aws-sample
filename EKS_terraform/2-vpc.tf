@@ -52,7 +52,7 @@ resource "aws_eip" "eip1" {
 
 resource "aws_nat_gateway" "eks-nat" {
     allocation_id = aws_eip.eip1.id
-    subnet_id = aws_subnet.pub-sn1.id
+    subnet_id = aws_subnet.pri-sn1.id
     tags = var.tags
 
     depends_on = [ aws_internet_gateway.igw ]
