@@ -52,7 +52,7 @@ resource "aws_eip" "eip1" {
 
 resource "aws_nat_gateway" "eks-nat" {
     allocation_id = aws_eip.eip1.id
-    subnet_id = aws_subnet.pri-sn1.id
+    subnet_id = aws_subnet.pub-sn1.id
     tags = var.tags
 
     depends_on = [ aws_internet_gateway.igw ]
@@ -91,12 +91,12 @@ resource "aws_route_table_association" "pub_rt1-2" {
 
 resource "aws_route_table_association" "pri_rt1-1" {
     subnet_id = aws_subnet.pri-sn1.id
-    route_table_id = aws_route_table.pub_rt1.id
+    route_table_id = aws_route_table.pri_rt1.id
   
 }
 
 resource "aws_route_table_association" "pri_rt1-2" {
     subnet_id = aws_subnet.pri-sn2.id
-    route_table_id = aws_route_table.pub_rt1.id
+    route_table_id = aws_route_table.pri_rt1.id
   
 }
